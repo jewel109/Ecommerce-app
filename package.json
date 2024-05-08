@@ -4,9 +4,38 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.ts",
+    "generate": "drizzle-kit generate:pg",
+    "dr:push": "drizzle-kit generate:pg --custom",
+    "push": "node -r src/migrate.ts"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/superagent": "^8.1.7",
+    "consola": "^3.2.3",
+    "drizzle-kit": "^0.20.18",
+    "esbuild": "^0.21.1",
+    "esbuild-register": "^3.5.0",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0",
+    "superagent": "^9.0.2",
+    "ts-node": "^10.9.2"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/http-errors": "^2.0.4",
+    "@types/jsonwebtoken": "^9.0.6",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.10",
+    "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "postgres": "^3.4.4",
+    "tsx": "^4.9.3",
+    "zod": "^3.23.7"
+  }
 }
