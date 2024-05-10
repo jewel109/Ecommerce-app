@@ -43,3 +43,30 @@ export const addCustomer = async (req: Request, res: Response, next: NextFunctio
 }
 
 
+export const getCustomer = async (_req: Request, res: Response, next: NextFunction) => {
+
+  try {
+    const data = await db.select().from(customers_schema)
+
+    if (data) {
+      return res.status(200).json({
+        data
+      })
+    }
+
+    res.status(200).json({
+      msg: "no data"
+    })
+
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      consola.error(error)
+      return next(error.message)
+    }
+    next()
+
+
+  }
+
+}
+
