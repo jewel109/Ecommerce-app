@@ -109,3 +109,22 @@ export const loginCustomer = async (req: Request, res: Response, next: NextFunct
 
   }
 }
+
+export const getAccessToServer = handler(async (req, _res, next) => {
+  try {
+    const { authorization } = req.headers
+    if (!authorization) {
+      return next("authorization not found")
+    }
+
+    const veryfied = await veryfyToken(authorization)
+    consola.log(veryfied)
+
+  } catch (error) {
+    consola.error(error)
+    next(error)
+  }
+
+})
+
+
