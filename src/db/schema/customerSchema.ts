@@ -9,6 +9,7 @@ export const customers_schema = ecommerce_schema.table("customer", {
   name: text("name").unique(),
   email: text("email").unique(),
   password: text("password"),
+  hashedPassword: text("hashedPassword"),
   active: boolean("active"),
   registered_at: timestamp("registered_at").defaultNow()
 })
