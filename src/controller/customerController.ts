@@ -70,3 +70,42 @@ export const getCustomer = async (_req: Request, res: Response, next: NextFuncti
 
 }
 
+export const loginCustomer = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { name }: User = req.body
+
+    const customer = await db.select().from(customers_schema).where(eq(customers_schema.name, name))
+
+    consola.log(customer[0])
+
+    const { email, password } = customer[0]
+
+    const token = await createToken({ name, email: z.string().parse(email), password: z.string().parse(password) }, next)
+
+    consola.log(token)
+
+    if (!customer) {
+      return res.json({
+        msg: "not found customer"
+      })
+    }
+
+    res.status(200).json({
+
+      customer,
+      token
+    })
+
+
+
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      consola.error(error)
+      return next(error.message)
+    }
+    consola.log(error)
+    next(error)
+
+
+  }
+}
