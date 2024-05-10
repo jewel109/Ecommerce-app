@@ -1,3 +1,26 @@
+import { customers_schema } from "../db/schema/customerSchema"
+import { db } from "../db/util"
+import { NextFunction, Request, Response } from "express"
+import { consola } from "consola"
+import { z } from "zod"
+import { createToken, veryfyToken } from "../utils/jsonwbtoken"
+import { createHash } from "../utils/passwordHashing"
+import { eq } from "drizzle-orm"
+import { handler } from "../utils/handler"
+
+export const userSchema = z.object({
+  name: z.string().min(4).default(""),
+  email: z.string().email().default(""),
+  password: z.string().min(4).default("")
+})
+
+export type User = z.infer<typeof userSchema>
+
+const user: User = {
+  name: "",
+  email: "",
+  password: ""
+}
 
 export const addCustomer = async (req: Request, res: Response, next: NextFunction) => {
 
