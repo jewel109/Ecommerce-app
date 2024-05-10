@@ -1,0 +1,85 @@
+{
+  "id": "ee5abd08-4f43-4d78-a794-adf2d0e8d6f2",
+  "prevId": "ba81b3d7-b987-4a97-9b91-bc69019a3801",
+  "version": "5",
+  "dialect": "pg",
+  "tables": {
+    "customer": {
+      "name": "customer",
+      "schema": "ecommerce_schema",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "serial",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "hashedPassword": {
+          "name": "hashedPassword",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "active": {
+          "name": "active",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "registered_at": {
+          "name": "registered_at",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {
+        "customer_name_unique": {
+          "name": "customer_name_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "name"
+          ]
+        },
+        "customer_email_unique": {
+          "name": "customer_email_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "email"
+          ]
+        }
+      }
+    }
+  },
+  "enums": {},
+  "schemas": {
+    "ecommerce_schema": "ecommerce_schema"
+  },
+  "_meta": {
+    "columns": {},
+    "schemas": {},
+    "tables": {}
+  }
+}
