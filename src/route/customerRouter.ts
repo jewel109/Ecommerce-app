@@ -1,6 +1,6 @@
 import { consola } from "consola"
 import express, { Request, Router, Response, NextFunction } from "express"
-import { addCustomer } from "../controller/customerController"
+import { addCustomer, getAccessToServer, getCustomer, loginCustomer } from "../controller/customerController"
 
 export const customerRouter = express.Router()
 
@@ -13,4 +13,8 @@ customerRouter.get('/1', (req: Request, res: Response, next: NextFunction) => {
 })
 
 customerRouter.post("/addCustomer", addCustomer)
+customerRouter.post("/getCustomer", getCustomer)
+
+customerRouter.post("/loginCustomer", loginCustomer)
+customerRouter.post("/getAccessToServer", getAccessToServer)
 
